@@ -7,7 +7,7 @@ from blog.models import Post
 # Create your views here.
 def list_posts(request: HttpRequest):
     posts = Post.published.all()
-    return render(request=request, template_name='../templates/list.html', context={'posts': posts})
+    return render(request=request, template_name='blog/post/list.html', context={'posts': posts})
 
 def post_detail(request: HttpRequest, post_id):
     try:
@@ -15,4 +15,4 @@ def post_detail(request: HttpRequest, post_id):
     except Post.DoesNotExist:
         raise Http404
 
-    return render(request=request, template_name='../templates/detail.html', context={'post': post})
+    return render(request=request, template_name='blog/post/detail.html', context={'post': post})
