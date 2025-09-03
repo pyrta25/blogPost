@@ -11,7 +11,7 @@ def list_posts(request: HttpRequest):
 
 def post_detail(request: HttpRequest, post_id):
     try:
-        post = Post.objects.get(pk=post_id)
+        post = Post.objects.get(id=post_id)
     except Post.DoesNotExist:
         raise Http404
 
