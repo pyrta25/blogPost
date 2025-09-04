@@ -9,9 +9,15 @@ def list_posts(request: HttpRequest):
     posts = Post.published.all()
     return render(request=request, template_name='blog/post/list.html', context={'posts': posts})
 
-def post_detail(request: HttpRequest, post_id):
+def post_detail(request: HttpRequest, year, month, day, post):
     try:
-        post = Post.objects.get(id=post_id)
+        post = Post.objects.get(
+            status=Post.Status.PUBLISHED,
+            slug=post,
+            publish__year=year,
+            publish__month=month,
+            publish__day=day
+        )
     except Post.DoesNotExist:
         raise Http404
 
